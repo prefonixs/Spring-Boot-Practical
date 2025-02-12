@@ -33,6 +33,7 @@ public class UserService {
     }
 
     public String authenticateUser(UserDTO userDTO) {
+    	System.out.println(userDTO);
         User user = userRepository.findByUsername(userDTO.getUsername())
                 .orElseThrow(() -> new RuntimeException("User not found."));
 

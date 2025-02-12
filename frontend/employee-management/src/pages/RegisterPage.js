@@ -10,11 +10,11 @@ import {
   Container,
   IconButton,
   InputAdornment,
-  Link,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { createUser } from "../api/EmployeeApi";
+import AuthOther from "../components/AuthOther";
 
 // Password validation schema
 const schema = yup.object().shape({
@@ -179,6 +179,7 @@ const RegisterPage = () => {
           </Button>
         </Typography>
       </Box>
+      <AuthOther/>
     </Container>
   );
 };

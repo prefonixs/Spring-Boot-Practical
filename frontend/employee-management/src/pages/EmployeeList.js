@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  deleteEmployeeByEmail,
-  downloadFile,
-  getAllEmployees,
-} from "../api/EmployeeApi";
+import { deleteEmployeeByEmail, getAllEmployees } from "../api/EmployeeApi";
 import { Link } from "react-router-dom";
 import { Container, Button, Typography, Box } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
@@ -37,15 +33,8 @@ function EmployeeList() {
     }
   };
 
-  const openFile = async (fileLocation) => {
-    try {
-      const response = await downloadFile(fileLocation);
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-
-      // alert(error);
-    }
+  const handleOpenFile = (fileUrl) => {
+    window.open(fileUrl, "_self"); // Opens the file in a new tab
   };
 
   const columns = [
@@ -64,7 +53,7 @@ function EmployeeList() {
             // variant="contained"
             color="info"
             size="small"
-            onClick={() => openFile(params.row.fileLocation)}
+            onClick={() => handleOpenFile(params.row.fileLocation)}
           >
             <FileDownloadIcon />
           </Button>
@@ -102,7 +91,7 @@ function EmployeeList() {
 
   return (
     <Container maxWidth="lg" sx={{ mt: 5 }}>
-      <Box sx={{display:"flex" , justifyContent:"space-between"}}>
+      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
         <Typography variant="h4" gutterBottom>
           Employee List
         </Typography>

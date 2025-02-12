@@ -1,11 +1,6 @@
 package com.sid.validation.entity;
 
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,13 +12,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class User {
 
-	@Id
-	@GeneratedValue
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@Column(unique = true, nullable = false)
-	private String username;
+    @Column(unique = true, nullable = false)
+    private String username; // Can be an email for Google users
 
-	@Column(nullable = false)
-	private String password;
+    private String password; // Can be null for Google users
+
+    @Column(name = "auth_provider")
+    private String authProvider; // "GOOGLE" for Google users
 }

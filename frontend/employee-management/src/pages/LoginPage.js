@@ -8,13 +8,13 @@ import {
   Box,
   Typography,
   Container,
-  Link,
   InputAdornment,
   IconButton,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../api/EmployeeApi";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import AuthOther from "../components/AuthOther";
 
 // Validation schema using Yup
 const schema = yup.object().shape({
@@ -125,6 +125,7 @@ const LoginPage = () => {
           </Button>
         </Typography>
       </Box>
+      <AuthOther/>
     </Container>
   );
 };

@@ -33,14 +33,12 @@ public class AuthController {
 		cookie.setMaxAge(60 * 60); // 1 hour expiration
 
 		response.addCookie(cookie);
-		System.out.println(response.toString());
 		
 		return ResponseEntity.ok("Login successful");
 	}
 
 	@PostMapping("/logout")
 	public ResponseEntity<String> logout(HttpServletResponse response) {
-		System.out.println("logout");
 		Cookie cookie = new Cookie("jwt", "");
 		cookie.setHttpOnly(true);
 		cookie.setSecure(true);
@@ -57,7 +55,6 @@ public class AuthController {
         // Extract the JWT cookie from the request
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
-        	System.out.println("cookies");
             for (Cookie cookie : cookies) {
                 if ("jwt".equals(cookie.getName())) {
                     String token = cookie.getValue();

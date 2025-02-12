@@ -6,6 +6,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import {
   createEmployee,
   getEmployees,
+  sendEmail,
+  sendSms,
   updateEmployee,
 } from "../api/EmployeeApi";
 import {
@@ -115,9 +117,17 @@ function ManageEmployee() {
 
       if (email === "new") {
         await createEmployee(employeeData, file);
+        sendEmail(
+          employeeData.email,
+          "Profile creation",
+          "Your profile has been successfully created"
+        );
       } else {
         employeeData.fileLocation = data.fileLocation;
         await updateEmployee(email, employeeData);
+        // console.log(employeeData.phoneNumber);
+
+        sendSms(employeeData.phoneNumber, "Data Updated");
       }
       navigate("/employee-list");
     } catch (error) {
@@ -150,7 +160,7 @@ function ManageEmployee() {
   };
 
   return (
-    <Container maxWidth="sm" sx={{marginBottom:7}}>
+    <Container maxWidth="sm" sx={{ marginBottom: 7 }}>
       <Typography variant="h4" sx={{ mt: 5, mb: 3 }}>
         {email === "new" ? "Add Employee" : "Edit Employee"}
       </Typography>
